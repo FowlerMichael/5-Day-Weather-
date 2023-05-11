@@ -41,10 +41,6 @@
 
           var dateElement = document.getElementById('date');
           dateElement.textContent = date.toLocaleDateString();
-
-          var iconElement = document.getElementById('icon');
-          iconElement.setAttribute('src', 'http://openweathermap.org/img/w/' + icon + '.png');
-
     
           logRecentSearch(data.name);
         })
