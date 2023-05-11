@@ -43,8 +43,6 @@
           dateElement.textContent = date.toLocaleDateString();
     
           logRecentSearch(data.name);
-          loadRecentSearches();
-
         })
 
         .catch(function (error) {
@@ -53,6 +51,31 @@
 
         fetchFutureWeatherData(city);
      
+    }
+    
+    function logRecentSearch(city) {
+      var recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
+      recentSearches.unshift(city);
+  
+      if (recentSearches.length > 5) {
+        recentSearches = recentSearches.slice(0, 5);
+      }
+  
+      localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
+
+      loadRecentSearches();
+    }
+  
+    function loadRecentSearches() {
+      var recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
+      var recentSearchesElement = document.querySelector('.recentSearch');
+      recentSearchesElement.innerHTML = '';
+  
+      recentSearches.forEach(function (search) {
+        var searchItem = document.createElement('p');
+        searchItem.textContent = search;
+        recentSearchesElement.appendChild(searchItem);
+      });
     }
 
         function fetchFutureWeatherData(city) {
@@ -145,30 +168,7 @@
       
           return cardFooter;
         }
-        function logRecentSearch(city) {
-          var recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
-          recentSearches.unshift(city);
-      
-          if (recentSearches.length > 5) {
-            recentSearches = recentSearches.slice(0, 5);
-          }
-      
-          localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
-      loadRecentSearches();
-        }
-      
-        function loadRecentSearches() {
-          var recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
-          var recentSearchesElement = document.querySelector('.recentSearch');
-          recentSearchesElement.innerHTML = '';
-      
-          recentSearches.forEach(function (search) {
-            var searchItem = document.createElement('p');
-            searchItem.textContent = search;
-            recentSearchesElement.appendChild(searchItem);
-          });
-        }
-      
+
         loadRecentSearches();
          
 });
