@@ -5,6 +5,7 @@ This is a simple weather dashboard api
 To use this application, simply open the index.html file in your preferred web browser.
 
 # Photo
+![image](https://github.com/FowlerMichael/5-Day-Weather-/assets/123891461/ea806bc0-7c9a-4830-8de0-efed1cbf575e)
 
 
 # Languages Used
